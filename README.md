@@ -1,5 +1,7 @@
 Deployed: https://donoso-manuel.github.io/pizzeria/
 
+Venta de Login y Registro emergen al presion el boton correspondiente
+
 
 
 # React + Vite

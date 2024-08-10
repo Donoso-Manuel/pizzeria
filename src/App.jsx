@@ -1,8 +1,8 @@
-import './App.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Home from './componentes/Home';
 import Footer from './componentes/Footer';
 import BarraNavegacion from './componentes/BarraNavegacion';
+
 
 
 function App() {

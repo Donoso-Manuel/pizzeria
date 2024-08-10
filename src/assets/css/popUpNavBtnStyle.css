@@ -1,0 +1,65 @@
+.panelRegistro, .panelLogin {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 1050;
+  }
+  
+  .panelRegistro.mostrar, .panelLogin.mostrar {
+    display: flex;
+  }
+  
+  .contenedorRegistro, .contenedorLogin {
+    background: #fff;
+    padding: 2rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 5px black;
+    max-width: 500px;
+    width: 100%;
+  }
+  
+  .btnCerrar {
+    color: aqua;
+    border: 1px aqua solid;
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 1.5rem;
+    background: transparent;
+  }
+.Container {
+    padding: 2rem;
+  }
+  
+  h1 {
+    margin-bottom: 2rem;
+  }
+  
+  .Form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .Form .form-group {
+    width: 100%;
+    max-width: 500px;
+    margin-bottom: 1rem;
+  }
+  
+  .Button {
+    width: 100%;
+    max-width: 500px;
+    padding: 0.75rem;
+  }
+  
+  .textoError {
+    color: #dc3545;
+    margin-top: 1rem;
+  }
