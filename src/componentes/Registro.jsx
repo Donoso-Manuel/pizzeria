@@ -43,7 +43,7 @@ const Registro = ({mostrar, cerrar}) => {
         <h2 className='text-center'>Registro</h2>
         <Form onSubmit={validacion} className='d-flex flex-column'>
             <Form.Group className='mb-2'>
-                <label>Correo:</label>
+                <p>Correo:</p>
                 <Form.Control 
                 type="text" 
                 name='email'
@@ -54,7 +54,7 @@ const Registro = ({mostrar, cerrar}) => {
            
             </Form.Group>
             <Form.Group className='mb-2'>
-            <label>Contraseña:</label>
+            <p>Contraseña:</p>
                 <Form.Control 
                 type='password' 
                 name='password' 
@@ -65,7 +65,7 @@ const Registro = ({mostrar, cerrar}) => {
         
             </Form.Group>
             <Form.Group className='mb-2'>
-                <label>Repetir Contraseña:</label>
+                <p>Repetir Contraseña:</p>
                 <Form.Control 
                 type="password" 
                 name='confirmPassword'

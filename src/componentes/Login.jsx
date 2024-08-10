@@ -33,7 +33,7 @@ const Login = ({mostrar, cerrar}) => {
           <h2>Login</h2>
           <Form onSubmit={validacionLogin} className='d-flex flex-column'>
               <Form.Group>
-                <label>Usuario (correo) </label>
+                <p>Usuario (correo) </p>
                 <Form.Control 
                 type='email'
                 name='email'
@@ -44,7 +44,7 @@ const Login = ({mostrar, cerrar}) => {
               </Form.Group>
              
               <Form.Group>
-                <label>Password</label>
+                <p>Password</p>
                 <Form.Control 
                 type='password'
                 name='password'
