@@ -1,4 +1,4 @@
-.panelRegistro, .panelLogin {
+.panelRegistro, .panelLogin, .panelCarrito {
     position: fixed;
     top: 0;
     left: 0;
@@ -11,17 +11,27 @@
     z-index: 1050;
   }
   
-  .panelRegistro.mostrar, .panelLogin.mostrar {
+  .panelRegistro.mostrar, .panelLogin.mostrar, .panelCarrito.mostrar{
     display: flex;
   }
-  
-  .contenedorRegistro, .contenedorLogin {
+  .opcionesPizza{
+    display: flex;
+    width: 1fr;
+    gap: 1rem;
+    list-style-type: none;
+  } 
+  .pizzaCarrito{
+    width: 100%;
+  }
+  .contenedorRegistro, .contenedorLogin, .contenedorCarrito {
     background: #fff;
     padding: 2rem;
     border-radius: 0.5rem;
     box-shadow: 0 2px 5px black;
-    max-width: 500px;
+    max-width: 2fr;
     width: 100%;
+    max-height: 80vh;
+    overflow-y: auto;
   }
   
   .btnCerrar {

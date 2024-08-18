@@ -6,10 +6,14 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPizzaSlice , faEye , faPlus } from '@fortawesome/free-solid-svg-icons';
 import '../assets/css/style.css'
 
-const CardPizza = ({ name, price, ingredients, img }) => {
+const CardPizza = ({pizza}) => {
+
+  const { desc, id, img, ingredients, name, price } = pizza;
   
-  let precio = parseInt(price);
-  
+  const formatNumber = (number) => {
+    return number.toLocaleString('es-CL');
+  };
+
   return (
     <Card style={{ width: '100%' }}>
       <Card.Img variant="top" src={img} />
@@ -18,12 +22,19 @@ const CardPizza = ({ name, price, ingredients, img }) => {
       </Card.Body>
       <ListGroup className="list-group-flush">
         <ListGroup.Item className='text-center'>
-          <strong>Ingredientes</strong>
-          <Card.Text><FontAwesomeIcon icon={faPizzaSlice} /> {ingredients.join(' - ')}</Card.Text>
+          {desc}
+        </ListGroup.Item>
+        <ListGroup.Item className='text-center'>
+        <FontAwesomeIcon icon={faPizzaSlice} /><strong>Ingredientes</strong>
+            <ul>
+              {ingredients.map((ingredient, index)=>
+                (<li key={index}>{ingredient}</li>)
+              )}
+            </ul>
         </ListGroup.Item>
         <ListGroup.Item>
           <Card.Title className='text-center m-3'>
-          <h3>$ {precio}</h3>
+          <h3>$ {formatNumber(price)}</h3>
           </Card.Title>
           <div className='botonesPizzaContenedor'>
             <Button variant="light" className="botonPizza">Ver Mas <FontAwesomeIcon icon={faEye}/></Button>
