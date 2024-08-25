@@ -23,7 +23,7 @@
   .pizzaCarrito{
     width: 100%;
   }
-  .contenedorRegistro, .contenedorLogin, .contenedorCarrito {
+  .contenedorRegistro, .contenedorLogin, .contenedorCarrito, .contenedorPizza {
     background: #fff;
     padding: 2rem;
     border-radius: 0.5rem;

@@ -37,7 +37,7 @@ const CardPizza = ({pizza}) => {
           <h3>$ {formatNumber(price)}</h3>
           </Card.Title>
           <div className='botonesPizzaContenedor'>
-            <Button variant="light" className="botonPizza">Ver Mas <FontAwesomeIcon icon={faEye}/></Button>
+            <Button variant="light" className="botonPizza">Ver Mas <FontAwesomeIcon icon={faEye} /></Button>
             <Button variant="dark" className="botonPizza">añadir <FontAwesomeIcon icon = {faPlus} /></Button>
           </div>
         </ListGroup.Item>

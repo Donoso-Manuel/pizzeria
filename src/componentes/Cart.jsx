@@ -1,10 +1,20 @@
 import {Button , Table, Container} from 'react-bootstrap'
-import {cartPizzas} from '../assets/data/pizzas'
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import '../assets/css/popUpNavBtnStyle.css';
 
 const Cart = ({mostrar, cerrar, total, setTotal}) => {
+    
+    async function fetchPizzas (){
+        const response = await  fetch("http://localhost:5000/api/pizzas");
+        const data = await response.json();
+        setCartPizzas(data)
+      }
+    
+      useEffect(()=>{
+        fetchPizzas()
+      }, [])
 
+    const [cartPizzas, setCartPizzas] = useState([])
     const [carrito, setCarrito] = useState([])
 
     const agregarPizza = (id)=>{
