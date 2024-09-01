@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import {Button, Container, Form} from 'react-bootstrap';
-import '../assets/css/popUpNavBtnStyle.css';
+import { Link } from 'react-router-dom';
+import '../../assets/css/popUpNavBtnStyle.css';
 
-const Registro = ({mostrar, cerrar}) => {
+const Registro = () => {
 
     const[email, setEmail] = useState("");
     const[password, setPassword] = useState("");
@@ -37,9 +38,8 @@ const Registro = ({mostrar, cerrar}) => {
     }
 
   return (
-    <div className= {`panelRegistro ${mostrar ? 'mostrar' : ''}`}>
-    <Button className="btnCerrar" variant="warning" onClick={cerrar}>×</Button>
-    <Container className="contenedorRegistro">
+    <div className='contenedorView'>
+        <Container>
         <h2 className='text-center'>Registro</h2>
         <Form onSubmit={validacion} className='d-flex flex-column'>
             <Form.Group className='mb-2'>
@@ -78,7 +78,9 @@ const Registro = ({mostrar, cerrar}) => {
             <Button type='submit' variant='secondary' className='mb-5'>Registrar</Button>
         </Form>
         {error ? <p className="textoError">{error}</p> : null}
-    </Container>
+        <p>¿Tienes Cuenta?</p>
+        <Link to='/pizzeria/login'>Iniciar sesion</Link>
+        </Container>
     </div>
   )
 }

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Card, ListGroup, ListGroupItem } from 'react-bootstrap';
-import '../assets/css/popUpNavBtnStyle.css'
+import '../../assets/css/popUpNavBtnStyle.css';
 
 const Pizza = () => {
 

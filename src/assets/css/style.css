@@ -36,6 +36,13 @@
     color: white;
     background-color: grey;
     text-align: center;
-    
-    padding: 1.25rem;
+    padding: 1rem;
+}
+.Page404{
+    background-image: url('../imgs/404.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 85vh;
+    color: white
+
 }

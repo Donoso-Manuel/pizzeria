@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { Button, Container, Form } from 'react-bootstrap';
-import '../assets/css/popUpNavBtnStyle.css';
+import '../../assets/css/popUpNavBtnStyle.css';
+import { Link } from 'react-router-dom';
 
-const Login = ({mostrar, cerrar}) => {
+const Login = () => {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -27,9 +28,8 @@ const Login = ({mostrar, cerrar}) => {
   }
 
   return (
-    <div className={`panelRegistro ${mostrar ? 'mostrar' : ''}`}>
-        <Button className="btnCerrar" onClick={cerrar}>×</Button>
-        <Container className='contenedorLogin'>
+    <div className='contenedorView'>
+      <Container>
           <h2>Login</h2>
           <Form onSubmit={validacionLogin} className='d-flex flex-column'>
               <Form.Group>
@@ -56,7 +56,9 @@ const Login = ({mostrar, cerrar}) => {
             <Button type='submit' variant='secondary' className='mt-4'>Ingresar</Button>
           </Form>
           {error ? <p className="textoError">{error}</p> : null}
-        </Container>
+          <p>¿No tienes cuenta?</p>
+          <Link to='/pizzeria/registro'>Crear Cuenta</Link>
+          </Container>
     </div>
 
 

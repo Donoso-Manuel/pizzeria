@@ -1,8 +1,8 @@
 import {Button , Table, Container} from 'react-bootstrap'
 import React, { useState, useEffect } from 'react'
-import '../assets/css/popUpNavBtnStyle.css';
+import '../../assets/css/popUpNavBtnStyle.css';
 
-const Cart = ({mostrar, cerrar, total, setTotal}) => {
+const Cart = () => {
     
     async function fetchPizzas (){
         const response = await  fetch("http://localhost:5000/api/pizzas");
@@ -16,6 +16,7 @@ const Cart = ({mostrar, cerrar, total, setTotal}) => {
 
     const [cartPizzas, setCartPizzas] = useState([])
     const [carrito, setCarrito] = useState([])
+    const [total, setTotal] = useState(0);
 
     const agregarPizza = (id)=>{
         
@@ -75,9 +76,8 @@ const Cart = ({mostrar, cerrar, total, setTotal}) => {
         return number.toLocaleString('es-CL');
       };
   return (
-    <div className={`panelCarrito ${mostrar ? 'mostrar' : ''}`}>
-    <Container className='contenedorCarrito'>
-    <Button className="btnCerrar" onClick={cerrar}>×</Button>
+    <div  className='contenedorView'>
+        <Container>
         <h2>Tu Carrito</h2>
         <ul className='opcionesPizza'>
             { cartPizzas.map(pizza =>
@@ -115,7 +115,7 @@ const Cart = ({mostrar, cerrar, total, setTotal}) => {
             <Button variant='danger' onClick={vaciarCarrito}>Vaciar Carrito</Button>
             <h4>Total: ${formatNumber(total)}  </h4><Button variant='primary'>Pagar</Button>
         </div>
-    </Container>
+        </Container>
     </div>
   )
 }

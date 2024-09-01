@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
-import Header from './Header';
-import CardPizza from './CardPizza';
+import Header from '../Header';
+import CardPizza from '../CardPizza';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-/* import {pizzas} from '../assets/data/pizzas.js' */
-import '../assets/css/style.css'
+import '../../assets/css/style.css'
 import { useEffect } from 'react';
 
 const Home = () => {
