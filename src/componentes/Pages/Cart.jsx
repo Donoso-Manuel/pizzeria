@@ -1,12 +1,17 @@
 import {Button , Table, Container} from 'react-bootstrap'
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import '../../assets/css/popUpNavBtnStyle.css';
+import { ContextCart } from '../HelpContext/ContextCart.jsx';
+
 
 const Cart = () => {
     
+    const {carrito, setCarrito, total, setTotal, agregarPizza, cartPizzas, setCartPizzas} = useContext(ContextCart)
+
     async function fetchPizzas (){
         const response = await  fetch("http://localhost:5000/api/pizzas");
         const data = await response.json();
+        console.log(data)
         setCartPizzas(data)
       }
     
@@ -14,33 +19,7 @@ const Cart = () => {
         fetchPizzas()
       }, [])
 
-    const [cartPizzas, setCartPizzas] = useState([])
-    const [carrito, setCarrito] = useState([])
-    const [total, setTotal] = useState(0);
 
-    const agregarPizza = (id)=>{
-        
-        const pizza = cartPizzas.find(pizza => pizza.id === id); 
-        const pizzaExiste =  carrito.find(item => item.id === id)    
-        
-        if(pizzaExiste){
-            const actualizaCarrito = [...carrito];
-            const pizzaActualizar = actualizaCarrito.findIndex(index => index.id === id);
-            actualizaCarrito[pizzaActualizar].cantidad +=1;
-            actualizaCarrito[pizzaActualizar].subTotal = actualizaCarrito[pizzaActualizar].cantidad * pizza.price;
-            setCarrito(actualizaCarrito)
-            totalAPagar(actualizaCarrito)
-        }else{
-            const actualizaCarrito = [...carrito, {
-                id: pizza.id,
-                name: pizza.name,
-                cantidad: 1,
-                subTotal: pizza.price
-            } ]
-        setCarrito(actualizaCarrito)
-        totalAPagar(actualizaCarrito)
-    }
-    }
     const quitarPizza = (id)=>{
         const pizza = cartPizzas.find(pizza => pizza.id === id); 
         const pizzaExiste =  carrito.find(item => item.id === id);
@@ -51,18 +30,11 @@ const Cart = () => {
                 actualizaCarrito[pizzaActualizar].cantidad -=1;
                 actualizaCarrito[pizzaActualizar].subTotal = actualizaCarrito[pizzaActualizar].cantidad * pizza.price;
                 setCarrito(actualizaCarrito)
-                totalAPagar(actualizaCarrito)
             }else{
                 actualizaCarrito.splice(pizzaActualizar, 1)
                 setCarrito(actualizaCarrito);
-                totalAPagar(actualizaCarrito)
             }
         }
-    }
-    const totalAPagar = (actualizaCarrito)=>{
-       let subtotal = actualizaCarrito.reduce((add = 0, pizza)=> add + pizza.subTotal, 0)
-       console.log(subtotal)
-       setTotal(subtotal)
     }
     const vaciarCarrito = ()=>{
         setCarrito([])

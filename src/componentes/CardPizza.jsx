@@ -1,12 +1,15 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Button from 'react-bootstrap/Button';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPizzaSlice , faEye , faPlus } from '@fortawesome/free-solid-svg-icons';
 import '../assets/css/style.css'
+import { ContextCart } from './HelpContext/ContextCart';
 
 const CardPizza = ({pizza}) => {
+
+  const {agregarPizza} = useContext(ContextCart)
 
   const { desc, id, img, ingredients, name, price } = pizza;
   
@@ -38,7 +41,7 @@ const CardPizza = ({pizza}) => {
           </Card.Title>
           <div className='botonesPizzaContenedor'>
             <Button variant="light" className="botonPizza">Ver Mas <FontAwesomeIcon icon={faEye} /></Button>
-            <Button variant="dark" className="botonPizza">añadir <FontAwesomeIcon icon = {faPlus} /></Button>
+            <Button variant="dark" className="botonPizza" onClick={()=>agregarPizza(id)}>añadir <FontAwesomeIcon icon = {faPlus} /></Button>
           </div>
         </ListGroup.Item>
       </ListGroup>

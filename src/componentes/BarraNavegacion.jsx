@@ -1,23 +1,25 @@
-import React, {useState} from 'react'
+import React, {useContext, useState} from 'react'
 import {Container, Navbar, Button} from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPizzaSlice , faLock , faUser , faShoppingCart , faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 import '../assets/css/style.css'
 import { Link } from 'react-router-dom';
+import { ContextCart } from './HelpContext/ContextCart';
+
+
 
 const formatNumber = (number) => {
   return number.toLocaleString('es-CL');
 };
 
 const BarraNavegacion = () => {
-
-  const [total, setTotal] = useState(0);
+  const {total} = useContext(ContextCart)
   const token = false;
 
 
   return (
   
-  <Navbar bg="dark" data-bs-theme="dark" >
+  <Navbar bg="dark" data-bs-theme="dark">
       <Container>
         <Navbar.Brand className="tituloNav text-white">¡Deliziosa Pizza!</Navbar.Brand>
         <Navbar.Toggle />

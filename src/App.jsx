@@ -9,12 +9,14 @@ import Cart from './componentes/Pages/Cart';
 import { Route, Routes } from 'react-router-dom';
 import Profile from './componentes/Pages/Profile';
 import NotFound from './componentes/Pages/NotFound';
+import ContextCartProvider from './componentes/HelpContext/ContextCart.jsx';
 
 
 function App() {
 
   return (
     <>
+    <ContextCartProvider>
       <BarraNavegacion />
       <Routes>
         <Route path='/pizzeria/' element={<Home />} />
@@ -27,6 +29,7 @@ function App() {
         <Route path='*' element={<NotFound />} /> {/* redunda, pero no se sí es lo que solicita */}
       </Routes>
       <Footer informacion = "¡Deliziosa Pizza! - Todos los Derechos Reservados"/>
+      </ContextCartProvider>
     </>
   )
 }
