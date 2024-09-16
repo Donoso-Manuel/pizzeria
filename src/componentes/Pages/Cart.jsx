@@ -2,11 +2,13 @@ import {Button , Table, Container} from 'react-bootstrap'
 import React, { useState, useEffect, useContext } from 'react'
 import '../../assets/css/popUpNavBtnStyle.css';
 import { ContextCart } from '../HelpContext/ContextCart.jsx';
+import { MyLoginContext } from '../HelpContext/UserContext.jsx';
 
 
 const Cart = () => {
     
     const {carrito, setCarrito, total, setTotal, agregarPizza, cartPizzas, setCartPizzas} = useContext(ContextCart)
+    const {token} = useContext(MyLoginContext)
 
     async function fetchPizzas (){
         const response = await  fetch("http://localhost:5000/api/pizzas");
@@ -85,7 +87,7 @@ const Cart = () => {
                 </tbody>
             </Table>
             <Button variant='danger' onClick={vaciarCarrito}>Vaciar Carrito</Button>
-            <h4>Total: ${formatNumber(total)}  </h4><Button variant='primary'>Pagar</Button>
+            <h4>Total: ${formatNumber(total)}</h4><Button variant='primary' disabled = {!token}>Pagar</Button>
         </div>
         </Container>
     </div>

@@ -6,16 +6,22 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPizzaSlice , faEye , faPlus } from '@fortawesome/free-solid-svg-icons';
 import '../assets/css/style.css'
 import { ContextCart } from './HelpContext/ContextCart';
+import { useNavigate } from 'react-router-dom';
+
 
 const CardPizza = ({pizza}) => {
 
   const {agregarPizza} = useContext(ContextCart)
-
+  const navegacion = useNavigate();
   const { desc, id, img, ingredients, name, price } = pizza;
   
   const formatNumber = (number) => {
     return number.toLocaleString('es-CL');
   };
+
+  function verPizza(id){
+    navegacion(`/pizzeria/pizza/${id}`)
+  }
 
   return (
     <Card style={{ width: '100%' }}>
@@ -40,7 +46,7 @@ const CardPizza = ({pizza}) => {
           <h3>$ {formatNumber(price)}</h3>
           </Card.Title>
           <div className='botonesPizzaContenedor'>
-            <Button variant="light" className="botonPizza">Ver Mas <FontAwesomeIcon icon={faEye} /></Button>
+            <Button variant="light" className="botonPizza" onClick={()=>verPizza(id)}>Ver Mas <FontAwesomeIcon icon={faEye} /></Button>
             <Button variant="dark" className="botonPizza" onClick={()=>agregarPizza(id)}>añadir <FontAwesomeIcon icon = {faPlus} /></Button>
           </div>
         </ListGroup.Item>

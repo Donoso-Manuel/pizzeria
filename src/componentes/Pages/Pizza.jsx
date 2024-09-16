@@ -1,18 +1,21 @@
 import React, { useEffect, useState } from 'react'
-import { Card, ListGroup, ListGroupItem } from 'react-bootstrap';
+import { Card, Container, ListGroup } from 'react-bootstrap';
 import '../../assets/css/popUpNavBtnStyle.css';
+import { useParams } from 'react-router-dom';
 
 const Pizza = () => {
 
     const[pizza, setPizza] = useState(null)
     const { desc, id, img, ingredients, name, price } = pizza || {};
 
+    const {pizzaId} = useParams();
+
     const formatNumber = (number) => {
         return number.toLocaleString('es-CL');
       };
 
     async function fetchPizzas (){
-        const response = await  fetch("http://localhost:5000/api/pizzas/p001");
+        const response = await  fetch(`http://localhost:5000/api/pizzas/${pizzaId}`);
         const data = await response.json();
         setPizza(data)
     }
@@ -25,7 +28,8 @@ const Pizza = () => {
     }
 
   return (
-    <div className='contenedorPizza'>
+    <Container className='d-flex justify-content-center align-items-center'>    
+      <div className='contenedorPizza'>
       <Card style={{ width: '40%' }}>
         <Card.Title className='text-center'><h3>{name}</h3></Card.Title>
         <Card.Body>
@@ -49,6 +53,7 @@ const Pizza = () => {
         </ListGroup>    
       </Card>
     </div>
+    </Container>
   )
 }
 

@@ -5,6 +5,7 @@ import { faPizzaSlice , faLock , faUser , faShoppingCart , faSignOutAlt } from '
 import '../assets/css/style.css'
 import { Link } from 'react-router-dom';
 import { ContextCart } from './HelpContext/ContextCart';
+import { MyLoginContext } from './HelpContext/UserContext';
 
 
 
@@ -14,7 +15,7 @@ const formatNumber = (number) => {
 
 const BarraNavegacion = () => {
   const {total} = useContext(ContextCart)
-  const token = false;
+  const {token, cerrarSesion} = useContext(MyLoginContext);
 
 
   return (
@@ -33,26 +34,26 @@ const BarraNavegacion = () => {
         <Link to="/pizzeria/profile">
         <Button variant="dark" 
         className="botonNav" 
-        style = {{display: !token ? 'null' : 'none'}}>
+        style = {{display:token ? '' : 'none'}}>
           <FontAwesomeIcon icon={faUser}/>Profile</Button>
           </Link>
         
         <Button variant="dark" 
         className="botonNav" 
-        style = {{display: token ? 'null' : 'none'}}>
+        style = {{display: token ? '' : 'none'}} onClick={()=> cerrarSesion()}>
           <FontAwesomeIcon icon = {faSignOutAlt}/> Logout</Button>
         
         <Link to='/pizzeria/login'>
         <Button variant="dark" 
         className="botonNav" 
-        style = {{display: token ? 'none' : 'null'}}>
+        style = {{display: token ? 'none' : ''}}>
           <FontAwesomeIcon icon={faLock}/>Login</Button>
         </Link>
         
         <Link to='/pizzeria/registro'>
         <Button variant="dark" 
         className="botonNav" 
-        style = {{display: token ? 'none' : 'null'}}>
+        style = {{display: token ? 'none' : ''}}>
           <FontAwesomeIcon icon={faLock}/>Register</Button>
           </Link>
         
