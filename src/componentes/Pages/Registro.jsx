@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import {Button, Container, Form} from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import '../../assets/css/popUpNavBtnStyle.css';
+import { MyLoginContext } from '../HelpContext/UserContext';
 
 const Registro = () => {
 
@@ -9,6 +10,7 @@ const Registro = () => {
     const[password, setPassword] = useState("");
     const[confirmPassword, setConfirmPassword] = useState("");
     const[error, setError] = useState("");
+    const{registrar} = useContext(MyLoginContext)
 
     const validacion = (event) => {
         event.preventDefault();
@@ -30,8 +32,7 @@ const Registro = () => {
             return
         } 
         setError("");
-        alert("Registro Exitoso");
-        cerrar();
+        registrar(email, password)
         setEmail("");
         setPassword("");
         setConfirmPassword("");

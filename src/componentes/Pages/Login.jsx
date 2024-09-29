@@ -1,13 +1,15 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Button, Container, Form } from 'react-bootstrap';
 import '../../assets/css/popUpNavBtnStyle.css';
 import { Link } from 'react-router-dom';
+import { MyLoginContext } from '../HelpContext/UserContext';
 
 const Login = () => {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const {iniciarSesion} = useContext(MyLoginContext)
 
   const validacionLogin = (event)=>{
     event.preventDefault();
@@ -20,11 +22,11 @@ const Login = () => {
     setError("La contraseña debe tener mas de 6 caracteres")
     return
   }
-    alert("Datos correctos")
+    iniciarSesion(email, password)
     setEmail("");
     setPassword("");
     setError("");
-    cerrar();
+
   }
 
   return (

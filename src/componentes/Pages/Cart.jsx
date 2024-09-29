@@ -7,20 +7,33 @@ import { MyLoginContext } from '../HelpContext/UserContext.jsx';
 
 const Cart = () => {
     
-    const {carrito, setCarrito, total, setTotal, agregarPizza, cartPizzas, setCartPizzas} = useContext(ContextCart)
+    const {carrito, setCarrito, total, setTotal, agregarPizza, cartPizzas} = useContext(ContextCart)
     const {token} = useContext(MyLoginContext)
 
-    async function fetchPizzas (){
-        const response = await  fetch("http://localhost:5000/api/pizzas");
-        const data = await response.json();
-        console.log(data)
-        setCartPizzas(data)
-      }
-    
-      useEffect(()=>{
-        fetchPizzas()
-      }, [])
-
+    const comprar = async () =>{
+        if(carrito.length === 0){
+            alert("Tu Carrito se encuentra vacio")
+        }
+        const respCarrito = await fetch("http://localhost:5000/api/checkouts", {
+            method:"POST",
+            headers:{
+                "Content-Type":"application/json",
+                Authorization: `Bearer ${token}`,
+            },
+            body: JSON.stringify(
+                {
+                    cart:carrito
+                }),
+        })
+        const resultadoPago = await respCarrito.json();
+        
+        if(resultadoPago.cart && resultadoPago.user){
+            alert("compra Realizada con Exito")
+            setCarrito([])
+        }else{
+            alert(resultadoPago.error) 
+        }
+    }
 
     const quitarPizza = (id)=>{
         const pizza = cartPizzas.find(pizza => pizza.id === id); 
@@ -87,7 +100,7 @@ const Cart = () => {
                 </tbody>
             </Table>
             <Button variant='danger' onClick={vaciarCarrito}>Vaciar Carrito</Button>
-            <h4>Total: ${formatNumber(total)}</h4><Button variant='primary' disabled = {!token}>Pagar</Button>
+            <h4>Total: ${formatNumber(total)}</h4><Button variant='primary' onClick={()=> comprar()} disabled = {!token}>Pagar</Button>
         </div>
         </Container>
     </div>
